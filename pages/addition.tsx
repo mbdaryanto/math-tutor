@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import CheckIcon from '@material-ui/icons/Check'
+import HomeIcon from '@material-ui/icons/Home'
 import styles from '../styles/Home.module.css'
 
 const Addition = () => (
@@ -11,12 +13,15 @@ const Addition = () => (
     <main className={styles.main}>
       <h4 className={styles.title}>
         <Link href="/">
-          &larr;
+          <a>
+            <HomeIcon style={{ fontSize: 50 }}/>
+          </a>
         </Link>
+        {' '}
         Addition
       </h4>
       <div className={styles.grid}>
-        <MultipleProblem min={2} max={9} count={5}/>        
+        <MultipleProblem min={0} max={9} count={5}/>        
       </div>
     </main>
   </div>
@@ -119,7 +124,7 @@ const Problem = ({left, right, result, onChange, isCorrect}: {
     <span className={styles.operand}>{right}</span>
     <span className={styles.operator}>=</span>
     <input type="text" className={styles.result} value={result} onChange={(event) => onChange(event.target.value)} />
-    <span className={styles.operator}>{ isCorrect ? 'v' : '' }</span>
+    <span className={styles.checkresult}>{ isCorrect ? <CheckIcon fontSize="large" /> : '' }</span>
   </div>
 )
 

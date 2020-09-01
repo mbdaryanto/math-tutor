@@ -143,6 +143,13 @@
   border-radius: 10px;
 }
 
+.checkresult {
+  color: #007F00;
+  text-align: center;
+  display: inline-block;
+  min-width: 50px;  
+}
+
 .full {
   margin: 1rem;
   flex-basis: 100%;
