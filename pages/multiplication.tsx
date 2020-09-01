@@ -11,7 +11,7 @@ const Multiplication = () => (
       <title>Multiplication</title>
     </Head>
     <main className={styles.main}>
-      <h2 className={styles.title}>
+      <h4 className={styles.title}>
         <Link href="/">
           <a>
             <HomeIcon style={{ fontSize: 50 }}/>
@@ -19,7 +19,7 @@ const Multiplication = () => (
         </Link>
         {' '}
         Multiplication
-      </h2>
+      </h4>
       <div className={styles.grid}>
         <MultipleProblem min={2} max={9} count={5}/>        
       </div>
@@ -123,7 +123,7 @@ const Problem = ({left, right, result, onChange, isCorrect}: {
     <span className={styles.operator}>x</span>
     <span className={styles.operand}>{right}</span>
     <span className={styles.operator}>=</span>
-    <input type="text" className={styles.result} value={result} onChange={(event) => onChange(event.target.value)} />
+    <input type="number" className={styles.result} value={result} onChange={(event) => onChange(event.target.value)} />
     <span className={styles.checkresult}>{ isCorrect ? <CheckIcon fontSize="large" /> : '' }</span>
   </div>
 )

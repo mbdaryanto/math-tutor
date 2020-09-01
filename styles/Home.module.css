@@ -8,7 +8,7 @@
 }
 
 .main {
-  padding: 5rem 0;
+  padding: 1rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -49,7 +49,7 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 2.5rem;
 }
 
 .title,
@@ -77,7 +77,7 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .card {
@@ -126,21 +126,21 @@
   border-width: 1px;
   border-style: solid;
   border-radius: 10px;
-  padding: 3px 15px 3px 15px;
-  font-size: 3rem;
+  padding: 2px 12px 3px 12px;
+  font-size: 2.5rem;
 }
 
 .operator {
-  padding: 3px 15px 3px 15px;
-  font-size: 3rem;
+  padding: 2px 12px 3px 12px;
+  font-size: 2.5rem;
   color: #777777;
 }
 
 .result {
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-align: center;
-  width: 80px;
-  border-radius: 10px;
+  width: 60px;
+  border-radius: 5px;
 }
 
 .checkresult {

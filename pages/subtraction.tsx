@@ -94,7 +94,7 @@ const Problem = ({left, right, result, onChange, isCorrect}: {
     <span className={styles.operator}>-</span>
     <span className={styles.operand}>{right}</span>
     <span className={styles.operator}>=</span>
-    <input type="text" className={styles.result} value={result} onChange={(event) => onChange(event.target.value)} />
+    <input type="number" className={styles.result} value={result} onChange={(event) => onChange(event.target.value)} />
     <span className={styles.checkresult}>{ isCorrect ? <CheckIcon fontSize="large" /> : '' }</span>
   </div>
 )
