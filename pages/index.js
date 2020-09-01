@@ -20,23 +20,21 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <div className={styles.card}>
-            <Link href="/addition">
-              <a>
-                <h3>Addition &rarr;</h3>
-                <p>Test your addition</p>
-              </a>
-            </Link>
-          </div>
+          
+          <Link href="/addition">
+            <a className={styles.card}>
+              <h3>Addition &rarr;</h3>
+              <p>Test your addition</p>
+            </a>
+          </Link>
 
-          <div className={styles.card}>
-            <Link href="/multiplication">
-              <a>
-                <h3>Multiplication &rarr;</h3>
-                <p>Test your multiplication</p>
-              </a>
-            </Link>
-          </div>
+          <Link href="/multiplication">
+            <a className={styles.card}>
+              <h3>Multiplication &rarr;</h3>
+              <p>Test your multiplication</p>
+            </a>
+          </Link>
+  
         </div>
       </main>
 
