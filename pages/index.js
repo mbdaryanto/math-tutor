@@ -28,6 +28,13 @@ export default function Home() {
             </a>
           </Link>
 
+          <Link href="/subtraction">
+            <a className={styles.card}>
+              <h3>Subtraction &rarr;</h3>
+              <p>Test your subtraction</p>
+            </a>
+          </Link>
+
           <Link href="/multiplication">
             <a className={styles.card}>
               <h3>Multiplication &rarr;</h3>
