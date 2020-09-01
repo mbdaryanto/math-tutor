@@ -10,7 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>       
+      <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to Math Tutor
         </h1>
@@ -20,28 +20,28 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          
-          <Link href="/addition">
+
+          <Link href="/addition?min=1&max=9">
             <a className={styles.card}>
               <h3>Addition &rarr;</h3>
               <p>Test your addition</p>
             </a>
           </Link>
 
-          <Link href="/subtraction">
+          <Link href="/subtraction?min=1&max=10">
             <a className={styles.card}>
               <h3>Subtraction &rarr;</h3>
               <p>Test your subtraction</p>
             </a>
           </Link>
 
-          <Link href="/multiplication">
+          <Link href="/multiplication?min=1&max=9">
             <a className={styles.card}>
               <h3>Multiplication &rarr;</h3>
               <p>Test your multiplication</p>
             </a>
           </Link>
-  
+
         </div>
       </main>
 
