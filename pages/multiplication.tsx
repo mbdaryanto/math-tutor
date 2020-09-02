@@ -4,9 +4,11 @@ import { useEffect, useState, useRef } from 'react'
 import CheckIcon from '@material-ui/icons/Check'
 import HomeIcon from '@material-ui/icons/Home'
 import AutorenewIcon from '@material-ui/icons/Autorenew'
+import TimerIcon from '@material-ui/icons/Timer'
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
+import moment from 'moment'
 
 interface QueryString {
   min?: string
@@ -19,6 +21,8 @@ const Multiplication = () => {
   const [isLoading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [results, setResults] = useState<string[]>([]);
+  const [startTime, setStartTime] = useState(moment());
+  const [stopwatch, setStopwatch] = useState(moment.duration(0));
 
   const query: QueryString = router.query as QueryString;
 
@@ -35,9 +39,19 @@ const Multiplication = () => {
     })))
     setResults(arr)
     setLoading(false)
+    setStartTime(moment())
   }
 
   useEffect(reset, [min, max, count])
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const isAllCorrect = questions.every((question, index) => isAnswerCorrect(question, results[index]))
+      if (!isAllCorrect) {
+        setStopwatch(moment.duration(moment().diff(startTime)))
+      }
+    }, 100)
+    return () => clearInterval(intervalId)
+  }, [startTime, questions, results])
 
   const handleResultChange = (changeIndex: number) => (newValue: string) => {
     setResults(results.map((oldValue, index) => index === changeIndex ? newValue : oldValue))
@@ -80,6 +94,12 @@ const Multiplication = () => {
               focused={index === firstIncorrectIndex}
             />
           ))}
+        </div>
+        <div className={styles.timer}>
+          <TimerIcon/>{' '}
+          {stopwatch.asSeconds().toFixed(1)}
+          {' '}
+          s
         </div>
       </main>
     </div>

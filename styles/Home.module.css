@@ -209,3 +209,9 @@
   font-size: 1.5rem;
   text-align: center;
 }
+
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
