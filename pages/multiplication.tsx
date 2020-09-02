@@ -47,13 +47,7 @@ const Multiplication = () => {
     return <div>Loading ...</div>
   }
 
-  let firstIncorrectIndex = max
-  questions.forEach((question, index) => {
-    if (!isAnswerCorrect(question, results[index])
-        && firstIncorrectIndex > index) {
-          firstIncorrectIndex = index
-    }
-  })
+  const firstIncorrectIndex = questions.findIndex((question, index) => !isAnswerCorrect(question, results[index]))
 
   return (
     <div className={styles.container}>
