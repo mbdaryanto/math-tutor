@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import CheckIcon from '@material-ui/icons/Check'
 import HomeIcon from '@material-ui/icons/Home'
 import AutorenewIcon from '@material-ui/icons/Autorenew'
@@ -49,13 +49,21 @@ const Subtraction = () => {
     return <div>Loading ...</div>
   }
 
+  let firstIncorrectIndex = max
+  questions.forEach((question, index) => {
+    if (!isAnswerCorrect(question, results[index])
+        && firstIncorrectIndex > index) {
+          firstIncorrectIndex = index
+    }
+  })
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Subtraction</title>
       </Head>
       <main className={styles.main}>
-        <h4 className={styles.title}>
+        <h4 className={styles.subtitle}>
           <Link href="/">
             <button className={classNames(styles.btn, styles.info)}>
               <HomeIcon/>
@@ -77,6 +85,7 @@ const Subtraction = () => {
               result={results[index]}
               onChange={handleResultChange(index)}
               isCorrect={isAnswerCorrect(question, results[index])}
+              focused={index === firstIncorrectIndex}
             />
           ))}
         </div>
@@ -95,21 +104,39 @@ function isAnswerCorrect(question: Question, answer: string): boolean {
   return (question.left - question.right === value)
 }
 
-const Problem = ({left, right, result, onChange, isCorrect}: {
+const Problem = ({left, right, result, onChange, isCorrect, focused}: {
   left: number,
   right: number,
   result: string,
   onChange: {(value: string): void},
   isCorrect: boolean,
-}) => (
-  <div className={styles.full}>
-    <span className={styles.operand}>{left}</span>
-    <span className={styles.operator}>-</span>
-    <span className={styles.operand}>{right}</span>
-    <span className={styles.operator}>=</span>
-    <input type="number" className={styles.result} value={result} onChange={(event) => onChange(event.target.value)} />
-    <span className={styles.checkresult}>{ isCorrect ? <CheckIcon fontSize="large" /> : '' }</span>
-  </div>
-)
+  focused: boolean,
+}) => {
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (focused) {
+      inputRef.current.focus()
+    }
+  }, [focused])
+
+  return (
+    <div className={styles.full}>
+      <span className={styles.operand}>{left}</span>
+      <span className={styles.operator}>-</span>
+      <span className={styles.operand}>{right}</span>
+      <span className={styles.operator}>=</span>
+      <input
+        type="number"
+        ref={inputRef}
+        className={styles.result}
+        value={result}
+        onChange={(event) => onChange(event.target.value)}
+        autoFocus={focused}
+        maxLength={2}
+      />
+      <span className={styles.checkresult}>{ isCorrect ? <CheckIcon fontSize="large" /> : '' }</span>
+    </div>
+  )
+}
 
 export default Subtraction

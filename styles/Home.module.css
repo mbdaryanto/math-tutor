@@ -176,8 +176,8 @@
   border-radius: 5px;
   background-color: white;
   color: black;
-  padding: 14px 28px;
-  font-size: 16px;
+  padding: 10px 20px;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
@@ -201,4 +201,11 @@
 .info:hover {
   background: #2196F3;
   color: white;
+}
+
+.subtitle {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 1.5rem;
+  text-align: center;
 }
