@@ -6,23 +6,13 @@ import HomeIcon from '@material-ui/icons/Home'
 import AutorenewIcon from '@material-ui/icons/Autorenew'
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
-// import { GetStaticProps } from 'next'
+import classNames from 'classnames'
 
-// interface AdditionProps {
-//   min: number
-//   max: number
-//   count: number
-// }
-
-// export const getStaticProps: GetStaticProps<AdditionProps> = async (context) => {
-//   return {
-//     props: {
-//       min: 0,
-//       max: 9,
-//       count: 5,
-//     },
-//   }
-// }
+interface QueryString {
+  min?: string
+  max?: string
+  count?: string
+}
 
 const Addition = () => {
   const router = useRouter()
@@ -31,9 +21,11 @@ const Addition = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [results, setResults] = useState<string[]>([]);
 
-  const min = parseInt(router.query.min || '1')
-  const max = parseInt(router.query.max || '9')
-  const count = parseInt(router.query.count || '5')
+  const query: QueryString = router.query as QueryString;
+
+  const min = parseInt(query.min ?? '1')
+  const max = parseInt(query.max ?? '9')
+  const count = parseInt(query.count ?? '5')
 
   const reset = () => {
     setLoading(true)
@@ -64,15 +56,15 @@ const Addition = () => {
       <main className={styles.main}>
         <h4 className={styles.title}>
           <Link href="/">
-            <button className={styles.link}>
-              <HomeIcon className={styles.linkicon}/>
+            <button className={classNames(styles.btn, styles.info)}>
+              <HomeIcon/>
             </button>
           </Link>
           {' '}
           Addition
           {' '}
-          <button className={styles.link}>
-            <AutorenewIcon className={styles.linkicon} onClick={() => reset()}/>
+          <button className={classNames(styles.btn, styles.info)} onClick={() => reset()}>
+            <AutorenewIcon/>
           </button>
         </h4>
         <div className={styles.grid}>

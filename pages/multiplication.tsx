@@ -5,19 +5,14 @@ import CheckIcon from '@material-ui/icons/Check'
 import HomeIcon from '@material-ui/icons/Home'
 import AutorenewIcon from '@material-ui/icons/Autorenew'
 import styles from '../styles/Home.module.css'
-// import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
+import classNames from 'classnames'
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   console.log(context.params)
-//   return {
-//     props: {
-//       min: context.params.min || 2,
-//       max: context.params.max || 9,
-//       count: 5,
-//     },
-//   }
-// }
+interface QueryString {
+  min?: string
+  max?: string
+  count?: string
+}
 
 const Multiplication = () => {
   const router = useRouter()
@@ -25,9 +20,11 @@ const Multiplication = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [results, setResults] = useState<string[]>([]);
 
-  const min = parseInt(router.query.min || '1')
-  const max = parseInt(router.query.max || '9')
-  const count = parseInt(router.query.count || '5')
+  const query: QueryString = router.query as QueryString;
+
+  const min = parseInt(query.min ?? '1')
+  const max = parseInt(query.max ?? '9')
+  const count = parseInt(query.count ?? '5')
 
   const reset = () => {
     setLoading(true)
@@ -58,15 +55,15 @@ const Multiplication = () => {
       <main className={styles.main}>
         <h4 className={styles.title}>
           <Link href="/">
-            <button className={styles.link}>
-              <HomeIcon className={styles.linkicon}/>
+            <button className={classNames(styles.btn, styles.info)}>
+              <HomeIcon/>
             </button>
           </Link>
           {' '}
           Multiplication
           {' '}
-          <button className={styles.link}>
-            <AutorenewIcon className={styles.linkicon} onClick={() => reset()}/>
+          <button className={classNames(styles.btn, styles.info)} onClick={() => reset()}>
+            <AutorenewIcon/>
           </button>
         </h4>
         <div className={styles.grid}>
